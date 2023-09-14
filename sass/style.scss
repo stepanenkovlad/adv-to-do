@@ -1,0 +1,141 @@
+body {
+  background-color: #d5dbdb;
+}
+* {
+  font-family: "Montserrat", sans-serif;
+}
+button {
+  transition: background-color 0.6s;
+}
+
+.container {
+  width: 1140px;
+  margin: 0 auto;
+  h1 {
+    text-align: center;
+    font-weight: 700;
+  }
+}
+
+.form {
+  display: block;
+  border-radius: 10%;
+  margin-top: 40px;
+  &Task {
+    display: flex;
+    input {
+      border-radius: 10px 0 0 10px;
+      width: 80%;
+      background-color: #fff;
+      border: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: 500;
+      color: black;
+    }
+    button {
+      border-radius: 0 10px 10px 0;
+      width: 20%;
+      background-color: #3498db;
+      border: none;
+      cursor: pointer;
+      color: #fff;
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: 500;
+      &:hover {
+        background-color: #2874a6;
+      }
+    }
+  }
+}
+
+.task {
+  margin-top: 30px;
+  &List {
+    padding: 0;
+    list-style: none;
+    border-radius: 10px;
+    overflow: hidden;
+    &_empty {
+      text-align: center;
+    }
+  }
+  &Item {
+    border-top: 1px solid rgba(1, 1, 1, 0.2);
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    font-size: 16px;
+    line-height: 1.5;
+    &:nth-child(1) {
+      border: none;
+    }
+    &:hover {
+      background-color: #f4f6f7;
+    }
+    &_highlight {
+      background-color: #85c1e9 !important;
+    }
+  }
+  &Name {
+    &_done {
+      text-decoration: line-through;
+    }
+  }
+  &Btns {
+    display: flex;
+    button {
+      height: 30px;
+      width: 30px;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      border-radius: 5px;
+      background-color: #ebedef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        background-color: #aeb6bf;
+      }
+      &:nth-child(1) {
+        margin-right: 7px;
+      }
+      img {
+        pointer-events: none;
+        width: 22px;
+        height: 22px;
+        color: red;
+      }
+    }
+  }
+}
+
+.btns {
+  margin-top: 30px;
+  display: flex;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(1, 1, 1, 0.2);
+  button {
+    background-color: #fff;
+    width: 100%;
+    font-size: 13px;
+    line-height: 1.7;
+    font-weight: 400;
+    cursor: pointer;
+    border: none;
+    border-right: 1px solid rgba(1, 1, 1, 0.2);
+    &:last-child {
+      border-right: none;
+    }
+    &:hover {
+      background-color: #85c1e9;
+    }
+  }
+}
