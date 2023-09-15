@@ -64,18 +64,21 @@ function doneTask(e) {
   const liSpan = taskLi.querySelector("span");
   const parentId = taskLi.id;
 
-  liSpan.classList.add("taskName_done");
+  // liSpan.classList.add("taskName_done");
+  liSpan.classList.toggle("taskName_done");
 
   const index = tasks.findIndex((el) => el.id == parentId);
   const el = tasks[index];
-  if (el.done) {
-    return;
+  // if (el.done) {
+  //   return;
+  // }
+  // el.done = true;
+  if (!el.done) {
+    tasks.push(el);
+    tasks.splice(index, 1);
+    list.appendChild(taskLi);
   }
-  el.done = true;
-  tasks.push(el);
-  tasks.splice(index, 1);
-
-  list.appendChild(taskLi);
+  el.done = !el.done;
 
   toLocalStorage("tasks", tasks);
 }
@@ -186,9 +189,13 @@ function dltFstElem(e) {
 
   const liElement = list.querySelector("li");
   liElement.remove();
+  dltdTasks.push(tasks[0]);
+  renderDltdTask(tasks[0]);
   tasks.splice(0, 1);
   toLocalStorage("tasks", tasks);
+  toLocalStorage("dltdTasks", dltdTasks);
   checkIfEmpty();
+  checkIfEmptyDltd();
 }
 
 function dltLstElem(e) {
@@ -197,9 +204,13 @@ function dltLstElem(e) {
   }
   const liElements = list.querySelectorAll("li");
   liElements[liElements.length - 1].remove();
+  dltdTasks.push(tasks[tasks.length - 1]);
+  renderDltdTask(tasks[tasks.length - 1]);
   tasks.splice(tasks.length - 1, 1);
   toLocalStorage("tasks", tasks);
+  toLocalStorage("dltdTasks", dltdTasks);
   checkIfEmpty();
+  checkIfEmptyDltd();
 }
 
 function renderDltdTask(task) {

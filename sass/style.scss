@@ -80,10 +80,17 @@ button {
     &_highlight {
       background-color: #85c1e9 !important;
     }
+    span {
+      overflow: hidden;
+      overflow-wrap: break-word;
+    }
   }
   &Name {
+    overflow: hidden;
+    overflow-wrap: break-word;
     &_done {
       text-decoration: line-through;
+      opacity: 0.6;
     }
   }
   &Btns {
@@ -103,7 +110,7 @@ button {
         background-color: #aeb6bf;
       }
       &:nth-child(1) {
-        margin-right: 7px;
+        margin: 0 7px;
       }
       img {
         pointer-events: none;

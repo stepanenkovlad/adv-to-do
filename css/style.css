@@ -76,8 +76,15 @@ button {
       background-color: #f4f6f7; }
     .taskItem_highlight {
       background-color: #85c1e9 !important; }
-  .taskName_done {
-    text-decoration: line-through; }
+    .taskItem span {
+      overflow: hidden;
+      overflow-wrap: break-word; }
+  .taskName {
+    overflow: hidden;
+    overflow-wrap: break-word; }
+    .taskName_done {
+      text-decoration: line-through;
+      opacity: 0.6; }
   .taskBtns {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -102,7 +109,7 @@ button {
       .taskBtns button:hover {
         background-color: #aeb6bf; }
       .taskBtns button:nth-child(1) {
-        margin-right: 7px; }
+        margin: 0 7px; }
       .taskBtns button img {
         pointer-events: none;
         width: 22px;
