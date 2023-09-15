@@ -41,6 +41,15 @@
         <section class="task">
           <ul id="tasksList" class="taskList"></ul>
         </section>
+        <section class="deleted">
+          <!-- решил немного улучшить функционал, добавив секцию с недавно
+          удаленными задачами, которые можно вернуть обратно в список с помощью кнопки, если вы,
+          например, случайно удалили задачу или вам нужно заново ее сделать -->
+          <button onclick="shwDltd()" class="deletedBtn" id="showBtn">
+            Показать удаленные элементы
+          </button>
+          <ul class="deletedList d-n" id="deletedList"></ul>
+        </section>
       </div>
     </main>
     <script src="js/script.js"></script>

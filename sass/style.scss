@@ -139,3 +139,28 @@ button {
     }
   }
 }
+
+.deleted {
+  margin-top: 30px;
+  .d-n {
+    display: none;
+  }
+  &Btn {
+    background-color: #fff;
+    font-size: 13px;
+    line-height: 1.7;
+    font-weight: 400;
+    cursor: pointer;
+    border: 1px solid rgba(1, 1, 1, 0.2);
+    border-radius: 10px;
+    padding: 0 10px;
+    &:hover {
+      background-color: #85c1e9;
+    }
+  }
+  &List {
+    padding: 0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+}

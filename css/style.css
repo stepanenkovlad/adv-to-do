@@ -132,4 +132,24 @@ button {
     .btns button:hover {
       background-color: #85c1e9; }
 
+.deleted {
+  margin-top: 30px; }
+  .deleted .d-n {
+    display: none; }
+  .deletedBtn {
+    background-color: #fff;
+    font-size: 13px;
+    line-height: 1.7;
+    font-weight: 400;
+    cursor: pointer;
+    border: 1px solid rgba(1, 1, 1, 0.2);
+    border-radius: 10px;
+    padding: 0 10px; }
+    .deletedBtn:hover {
+      background-color: #85c1e9; }
+  .deletedList {
+    padding: 0;
+    border-radius: 10px;
+    overflow: hidden; }
+
 /*# sourceMappingURL=style.css.map */
