@@ -110,9 +110,7 @@ function lightEvenEl(e) {
 function checkIfEmpty() {
   if (tasks.length == 0) {
     const emptyList = `
-      <li id="emptyList">
-      <div class="taskList_empty">Список дел пуст</div>
-    </li>`;
+    <div class="taskList_empty" id="emptyList">Список дел пуст</div>`;
     list.insertAdjacentHTML("afterbegin", emptyList);
   }
   if (tasks.length > 0) {
