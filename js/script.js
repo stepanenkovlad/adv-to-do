@@ -33,6 +33,9 @@ if (localStorage.getItem("dltdTasks")) {
 }
 checkIfEmptyDltd();
 
+let evenHighlighted,
+  oddHighlighted = false;
+
 function addTask(e) {
   e.preventDefault();
 
@@ -48,9 +51,24 @@ function addTask(e) {
 
   tasks.push(task);
 
-  checkIfEmpty();
-
   renderTask(task);
+
+  if (evenHighlighted) {
+    const liElements = list.querySelectorAll("li");
+    const lastElem = liElements[liElements.length - 1];
+    if ([liElements.length - 1] % 2 != 0) {
+      lastElem.classList.add("taskItem_highlight");
+    }
+  }
+  if (oddHighlighted) {
+    const liElements = list.querySelectorAll("li");
+    const lastElem = liElements[liElements.length - 1];
+    if ([liElements.length - 1] % 2 == 0) {
+      lastElem.classList.add("taskItem_highlight");
+    }
+  }
+
+  checkIfEmpty();
 
   toLocalStorage("tasks", tasks);
 }
@@ -64,15 +82,10 @@ function doneTask(e) {
   const liSpan = taskLi.querySelector("span");
   const parentId = taskLi.id;
 
-  // liSpan.classList.add("taskName_done");
   liSpan.classList.toggle("taskName_done");
 
   const index = tasks.findIndex((el) => el.id == parentId);
   const el = tasks[index];
-  // if (el.done) {
-  //   return;
-  // }
-  // el.done = true;
   if (!el.done) {
     tasks.push(el);
     tasks.splice(index, 1);
@@ -102,12 +115,6 @@ function deleteTask(e) {
 
   toLocalStorage("tasks", tasks);
   toLocalStorage("dltdTasks", dltdTasks);
-}
-
-function lightEvenEl(e) {
-  const taskLi = e.target.closest("li");
-  const parentId = taskLi.id;
-  taskLi.classList.toggle("taskItem_highlight");
 }
 
 function checkIfEmpty() {
@@ -145,7 +152,7 @@ function renderTask(task) {
     </button>
   </div>
 </li>`;
-  tasksList.insertAdjacentHTML("beforeend", taskHtml);
+  list.insertAdjacentHTML("beforeend", taskHtml);
 }
 
 function toLocalStorage(elemName, elem) {
@@ -156,6 +163,9 @@ function hltEvenIndex(e) {
   if (e.target.dataset.action != "hltEvenIndex") {
     return;
   }
+
+  evenHighlighted = !evenHighlighted;
+  oddHighlighted = false;
 
   const liElements = list.querySelectorAll("li");
   liElements.forEach((el, index) => {
@@ -171,6 +181,9 @@ function hltOddIndex(e) {
   if (e.target.dataset.action != "hltOddIndex") {
     return;
   }
+
+  oddHighlighted = !oddHighlighted;
+  evenHighlighted = false;
 
   const liElements = list.querySelectorAll("li");
   liElements.forEach((el, index) => {
