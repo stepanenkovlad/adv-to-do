@@ -33,6 +33,23 @@ if (localStorage.getItem("dltdTasks")) {
 }
 checkIfEmptyDltd();
 
+// Решил добавить функцию, которая проверяет, когда элемент был удален, и если это время превышает 30 минут, то удаляет его из недавно удаленных. Это может помочь избежать хранения хлама в "недавно удаленных"
+
+const listForCheck = deletedList.querySelectorAll("li");
+listForCheck.forEach((el) => {
+  let span = el.querySelector("span");
+  if (new Date().getTime() - span.id >= 1800000) {
+    const taskLi = el.closest("li");
+    const parentId = taskLi.id;
+    const index = dltdTasks.findIndex((el) => el.id == parentId);
+    dltdTasks.splice(index, 1);
+    taskLi.remove();
+
+    checkIfEmptyDltd();
+    toLocalStorage("dltdTasks", dltdTasks);
+  }
+});
+
 let evenHighlighted,
   oddHighlighted = false;
 
@@ -106,6 +123,9 @@ function deleteTask(e) {
 
   const index = tasks.findIndex((el) => el.id == parentId);
   dltdTasks.push(tasks[index]);
+
+  dltdTasks[dltdTasks.length - 1].whenDeleted = new Date().getTime();
+
   renderDltdTask(tasks[index]);
   tasks.splice(index, 1);
   taskLi.remove();
@@ -229,7 +249,7 @@ function dltLstElem(e) {
 function renderDltdTask(task) {
   const taskHtml = `
   <li id="${task.id}" class="taskItem">
-              <span>${task.text}</span>
+              <span id='${task.whenDeleted}'>${task.text}</span>
               <div class="taskBtns">
                 <button data-action="return">
                   <img src="img/return-svgrepo-com (1).svg" alt="delete" />
@@ -258,6 +278,7 @@ function returnTask(e) {
   const index = dltdTasks.findIndex((el) => el.id == parentId);
   const el = dltdTasks[index];
   el.done = false;
+  delete el.whenDeleted;
   tasks.push(el);
   dltdTasks.splice(index, 1);
   taskLi.remove();

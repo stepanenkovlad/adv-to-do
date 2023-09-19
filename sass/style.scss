@@ -33,6 +33,10 @@ button {
       line-height: 1.5;
       font-weight: 500;
       color: black;
+      &:focus-visible {
+        outline-color: rgba(1, 1, 1, 0.5);
+        outline-offset: -1px;
+      }
     }
     button {
       border-radius: 0 10px 10px 0;
